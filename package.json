@@ -2,7 +2,7 @@
   "name": "downshift-pelias",
   "version": "0.0.1",
   "description": "Downshift + pelias-js geo autocomplete/dropdown/search React component",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -25,5 +25,8 @@
     "downshift": "*",
     "pelias-js": ">=0.0.8",
     "react": ">=0.14.9"
+  },
+  "devDependencies": {
+    "prop-types": "^15.7.2"
   }
 }
