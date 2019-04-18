@@ -1,11 +1,17 @@
 {
   "name": "downshift-pelias",
-  "version": "0.0.1",
+  "version": "0.0.2-alpha",
   "description": "Downshift + pelias-js geo autocomplete/dropdown/search React component",
-  "main": "src/index.js",
+  "main": "dist/DownshiftPelias.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c",
+    "prepublish": "npm run build"
   },
+  "files": [
+    "dist",
+    "src"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/louh/downshift-pelias.git"
@@ -27,6 +33,14 @@
     "react": ">=0.14.9"
   },
   "devDependencies": {
-    "prop-types": "^15.7.2"
+    "@babel/cli": "^7.4.3",
+    "@babel/core": "^7.4.3",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-react": "^7.0.0",
+    "prop-types": "^15.7.2",
+    "rollup": "^1.10.0",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-node-resolve": "^4.2.3"
   }
 }

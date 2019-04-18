@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import Downshift from 'downshift'
 
-class DownshiftPelias extends Component {
+class DownshiftPelias extends React.Component {
   static propTypes = {
     children: PropTypes.func.isRequired,
     pelias: PropTypes.shape({
@@ -94,7 +94,7 @@ class DownshiftPelias extends Component {
       })
   }
 
-  defaultItemToString = item => (item ? item.properties.label : '')
+  defaultItemToString = (item) => (item ? item.properties.label : '')
 
   render () {
     return (
@@ -121,7 +121,7 @@ class DownshiftPelias extends Component {
             ...args,
             onKeyDown: (event) => {
               // Run `onKeyDown` from parent <input> element, if provided
-              if (typeof args.onKeyDown === 'function') {
+              if (args && typeof args.onKeyDown === 'function') {
                 args.onKeyDown(event)
               }
 
