@@ -1,5 +1,7 @@
 # downshift-pelias
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/louh/downshift-pelias.svg)](https://greenkeeper.io/)
+
 ## What's this?
 
 You need an autocomplete/dropdown/select experience in your application **for a Pelias geocoding service** and you want it to be accessible. You also want it to be simple and flexible to account for your use cases.
