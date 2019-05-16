@@ -23,6 +23,10 @@ class DownshiftPelias extends React.Component {
       pending: false,
       error: false
     }
+
+    // For internal use only to track when inputs are being made,
+    // so we know when to throw away async responses that become stale
+    this.lastInputTimestamp = Date.now()
   }
 
   handleInputValueChange = (inputValue, stateAndHelpers) => {
@@ -35,8 +39,12 @@ class DownshiftPelias extends React.Component {
   }
 
   doAutocomplete = (inputValue) => {
+    const timestamp = Date.now()
+    this.lastInputTimestamp = timestamp
+
     if (!inputValue) {
       this.setState({
+        pending: false,
         results: null
       })
       return
@@ -50,23 +58,33 @@ class DownshiftPelias extends React.Component {
       .setSearchTerm(inputValue)
       .execute()
       .then((response) => {
-        this.setState({
-          pending: false,
-          results: response
-        })
+        // Only display the results if the timestamp associated
+        // with this request is still current
+        if (timestamp === this.lastInputTimestamp) {
+          this.setState({
+            pending: false,
+            results: response
+          })
+        }
       })
       .catch((error) => {
          console.log(error)
-         this.setState({
+         if (timestamp === this.lastInputTimestamp) {
+          this.setState({
             pending: false,
             error: true
-         })
+          })
+        }
       })
   }
 
   doSearch = (inputValue) => {
+    const timestamp = Date.now()
+    this.lastInputTimestamp = timestamp
+
     if (!inputValue) {
       this.setState({
+        pending: false,
         results: null
       })
       return
@@ -80,17 +98,23 @@ class DownshiftPelias extends React.Component {
       .setSearchTerm(inputValue)
       .execute()
       .then((response) => {
-        this.setState({
-          pending: false,
-          results: response
-        })
+        // Only display the results if the timestamp associated
+        // with this request is still current
+        if (timestamp === this.lastInputTimestamp) {
+          this.setState({
+            pending: false,
+            results: response
+          })
+        }
       })
       .catch((error) => {
-         console.log(error)
-         this.setState({
+        console.log(error)
+        if (timestamp === this.lastInputTimestamp) {
+          this.setState({
             pending: false,
             error: true
-         })
+          })
+        }
       })
   }
 
